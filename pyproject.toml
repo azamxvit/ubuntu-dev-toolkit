@@ -1,0 +1,37 @@
+[project]
+name = "ubuntu-dev-toolkit"
+version = "0.1.0"
+description = "Swiss Army knife for Ubuntu developers"
+authors = [
+    {name = "Azamat",email = "omirtayazamatt@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click (>=8.3.1,<9.0.0)",
+    "psutil (>=7.2.2,<8.0.0)",
+    "rich (>=14.3.3,<15.0.0)"
+]
+
+[tool.poetry]
+# Указываем Poetry, где искать наши пакеты
+packages = [
+    { include = "cli", from = "src" },
+    { include = "components", from = "src" },
+    { include = "utils", from = "src" }
+]
+
+[tool.poetry.scripts]
+# Теперь путь начинается сразу с cli, так как мы указали, что он лежит в src
+ubutool = "cli.main:cli"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "black (>=26.1.0,<27.0.0)"
+]
